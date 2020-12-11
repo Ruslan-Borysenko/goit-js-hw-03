@@ -1,16 +1,16 @@
 const findBestEmployee = function (employees) {
-  const entiries = Object.entries(employees)
-  let biggestNumber = entiries[0][1]
-  let bestEmployee = entiries[0][0]
+  const keys = Object.keys(employees);
+  let bestEmployee = keys[0];
+  let biggestAmount = employees[keys[0]];
 
-  for (const entry of entiries) {
-    if (biggestNumber < entry[1]) {
-      biggestNumber = entry[1]
-      bestEmployee = entry[0]
+  for (let key of keys) {
+    if (biggestAmount < employees[key]) {
+      biggestAmount = employees[key];
+      bestEmployee = key;
     }
   }
-  return bestEmployee
-}
+  return bestEmployee;
+};
 
 /*
  * Вызовы функции для проверки работоспособности твоей реализации.
@@ -21,16 +21,16 @@ console.log(
     david: 35,
     helen: 1,
     lorence: 99,
-  })
-) // lorence
+  }),
+); // lorence
 
 console.log(
   findBestEmployee({
     poly: 12,
     mango: 17,
     ajax: 4,
-  })
-) // mango
+  }),
+); // mango
 
 console.log(
   findBestEmployee({
@@ -38,5 +38,5 @@ console.log(
     david: 21,
     kiwi: 19,
     chelsy: 38,
-  })
-) // lux
+  }),
+); // lux

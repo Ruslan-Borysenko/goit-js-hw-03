@@ -5,20 +5,33 @@ const products = [
   { name: 'Захват', price: 1200, quantity: 2 },
 ];
 
+// First version
+
+// const getAllPropValues = function (arr, prop) {
+//   let result = [];
+
+//   for (let i = 0; i < arr.length; i += 1) {
+//     // створюємо масив з об*єкту
+//     const entries = Object.entries(arr[i]);
+
+//     // отримуємо ключ:значення з масиву
+//     for (const entry of entries) {
+//       const key = entry[0];
+//       const value = entry[1];
+//       if (prop === key) {
+//         result.push(value);
+//       }
+//     }
+//   }
+//   return result;
+// };
+
+// Second version
 const getAllPropValues = function (arr, prop) {
   let result = [];
-
-  for (let i = 0; i < arr.length; i += 1) {
-    // створюємо масив з об*єкту
-    const entries = Object.entries(arr[i]);
-
-    // отримуємо ключ:значення з масиву
-    for (const entry of entries) {
-      const key = entry[0];
-      const value = entry[1];
-      if (prop === key) {
-        result.push(value);
-      }
+  for (let obj of arr) {
+    if (obj.hasOwnProperty(prop)) {
+      result.push(obj[prop]);
     }
   }
   return result;
