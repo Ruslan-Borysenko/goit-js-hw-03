@@ -26,8 +26,8 @@ const account = {
    * Принимает сумму и тип транзакции.
    */
   createTransaction(amount, type) {
-    const Transaction = { amount, type };
-    return Transaction;
+    const transaction = { amount, type };
+    return transaction;
   },
 
   /*
@@ -89,13 +89,13 @@ const account = {
    * определенного типа транзакции из всей истории транзакций
    */
   getTransactionTotal(type) {
-    let TransactionTotal = 0;
+    let transactionTotal = 0;
     for (const transaction of this.transactions) {
       if (transaction.type === type) {
-        TransactionTotal += transaction.amount;
+        transactionTotal += transaction.amount;
       }
     }
-    return TransactionTotal;
+    return transactionTotal;
   },
 };
 

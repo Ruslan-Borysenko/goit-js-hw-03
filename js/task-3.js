@@ -1,4 +1,4 @@
-const findBestEmployee = function (employees) {
+const findBestEmployee = employees => {
   const keys = Object.keys(employees);
   let bestEmployee = keys[0];
   let biggestAmount = employees[keys[0]];
