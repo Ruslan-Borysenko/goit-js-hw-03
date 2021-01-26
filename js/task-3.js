@@ -1,9 +1,19 @@
 const findBestEmployee = employees => {
   const keys = Object.keys(employees);
-  let bestEmployee = keys[0];
-  let biggestAmount = employees[keys[0]];
+  // let bestEmployee = keys[0];
+  // let biggestAmount = employees[keys[0]];
 
-  for (let key of keys) {
+  // for (let i = 1; i < keys.length; i += 1) {
+  //   if (biggestAmount < employees[keys[i]]) {
+  //     biggestAmount = employees[keys[i]];
+  //     bestEmployee = keys[i];
+  //   }
+  //   console.log('i=', i);
+  // }
+
+  let bestEmployee = '';
+  let biggestAmount = 0;
+  for (const key of keys) {
     if (biggestAmount < employees[key]) {
       biggestAmount = employees[key];
       bestEmployee = key;

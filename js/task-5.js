@@ -29,7 +29,7 @@ const products = [
 // Second version
 const getAllPropValues = (arr, prop) => {
   let result = [];
-  for (let obj of arr) {
+  for (const obj of arr) {
     if (obj.hasOwnProperty(prop)) {
       result.push(obj[prop]);
     }

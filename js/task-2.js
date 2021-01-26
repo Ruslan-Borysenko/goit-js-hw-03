@@ -5,8 +5,8 @@
 // }
 
 const countProps = obj => {
-  const values = Object.values(obj);
-  let total = values.length;
+  const keys = Object.keys(obj);
+  let total = keys.length;
   return total;
 };
 

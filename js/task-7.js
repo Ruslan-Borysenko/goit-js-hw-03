@@ -5,10 +5,10 @@
  * Типов транзацкий всего два.
  * Можно положить либо снять деньги со счета.
  */
-// const Transaction = {
-//   DEPOSIT: 'deposit',
-//   WITHDRAW: 'withdraw',
-// };
+const { DEPOSIT, WITHDRAW } = {
+  DEPOSIT: 'deposit',
+  WITHDRAW: 'withdraw',
+};
 
 /*
  * Каждая транзакция это объект со свойствами: id, type и amount
@@ -20,14 +20,14 @@ const account = {
 
   // История транзакций
   transactions: [],
+  _idTransactionCounter: 0,
 
   /*
    * Метод создает и возвращает объект транзакции.
    * Принимает сумму и тип транзакции.
    */
   createTransaction(amount, type) {
-    const transaction = { amount, type };
-    return transaction;
+    return { amount, type };
   },
 
   /*
@@ -37,9 +37,10 @@ const account = {
    * после чего добавляет его в историю транзакций
    */
   deposit(amount) {
-    this.balance = amount;
-    const transaction = this.createTransaction(amount, 'deposit');
-    transaction.id = this.transactions.length;
+    this.balance += amount;
+    const transaction = this.createTransaction(amount, DEPOSIT);
+    transaction.id = this._idTransactionCounter;
+    this._idTransactionCounter += 1;
     this.transactions.push(transaction);
     return this.transactions;
   },
@@ -56,13 +57,13 @@ const account = {
   withdraw(amount) {
     if (amount > this.balance) {
       return `Зняття ${amount} не можливо, недостатньо коштів.`;
-    } else {
-      this.balance -= amount;
-      const transaction = this.createTransaction(amount, 'withdraw');
-      transaction.id = this.transactions.length;
-      this.transactions.push(transaction);
-      return this.transactions;
     }
+    this.balance -= amount;
+    const transaction = this.createTransaction(amount, WITHDRAW);
+    transaction.id = this._idTransactionCounter;
+    this._idTransactionCounter += 1;
+    this.transactions.push(transaction);
+    return this.transactions;
   },
 
   /*
@@ -103,8 +104,8 @@ console.log(account.createTransaction(1000, 'deposit'));
 console.log(account.deposit(200));
 console.log(account.withdraw(50));
 console.log(account.withdraw(50));
-console.log(account.getBalance());
 console.log(account.deposit(100));
+console.log(account.getBalance());
 console.log(account.getTransactionDetails(1));
 console.log(account.getTransactionTotal('deposit'));
 console.log(account.getTransactionTotal('withdraw'));
